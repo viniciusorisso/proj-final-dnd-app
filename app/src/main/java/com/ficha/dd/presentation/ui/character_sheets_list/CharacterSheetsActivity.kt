@@ -5,8 +5,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ficha.dd.MainActivity
-import com.ficha.dd.data.model.SpellModel
-import com.ficha.dd.data.room.AppDatabase
 import com.ficha.dd.databinding.CharacterSheetsListBinding
 import com.ficha.dd.presentation.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -30,7 +28,6 @@ class CharacterSheetsActivity : AppCompatActivity() {
         setupViews()
         setupObservers()
         setContentView(view)
-        testBD()
     }
 
     private fun setupViews() {
@@ -48,13 +45,4 @@ class CharacterSheetsActivity : AppCompatActivity() {
         }
     }
 
-    private fun testBD() {
-        val db = AppDatabase.getDatabase(this).SpellDAO()
-        val spell = SpellModel().apply {
-            this.spellIndex = "acid-arrow"
-            this.name = "Acid Arrow"
-            this.url = "/acid-arrow"
-        }
-        db.insert(spell)
-    }
 }

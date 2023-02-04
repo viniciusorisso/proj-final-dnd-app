@@ -1,23 +1,18 @@
 package com.ficha.dd.data.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import com.ficha.dd.data.model.SpellModel
+import androidx.room.*
+import com.ficha.dd.data.local.SpellEntity
 
 @Dao
 interface SpellDAO {
 
-    @Insert
-    fun insert(p: SpellModel)
-
-    @Insert
-    fun update(p: SpellModel)
-
-    @Delete
-    fun delete(p: SpellModel)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertSpell(spellsList: List<SpellEntity>)
+    @Query("DELETE FROM spell")
+    suspend fun clearSpellsList()
 
     @Query("SELECT * FROM spell WHERE spellIndex = :index")
-    fun getSpellByIndex(index: String): SpellModel
+    fun getSpellByIndex(index: String): SpellEntity
+    @Query("SELECT * FROM spell")
+    suspend fun getAllSpells(): List<SpellEntity>
 }

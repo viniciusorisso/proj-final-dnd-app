@@ -4,8 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ficha.dd.databinding.ItemsListItemBinding
-import com.ficha.dd.domain.Element
-import com.ficha.dd.domain.Element.Item
+import com.ficha.dd.domain.model.Item
 
 class ItemsListAdapter() :
     RecyclerView.Adapter<ItemsListAdapter.ViewHolder>() {
@@ -35,7 +34,6 @@ class ItemsListAdapter() :
     class ViewHolder(private val itemBinding: ItemsListItemBinding) : RecyclerView.ViewHolder(itemBinding.root) {
         fun bind (item : Item) = with(itemBinding) {
             this.itemName.text = item.name
-            this.itemDamage.text = item.damage
             this.itemIndex.text = item.index
         }
     }

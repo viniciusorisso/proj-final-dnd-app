@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ficha.dd.MainActivity
-import com.ficha.dd.data.room.AppDatabase
 import com.ficha.dd.databinding.SpellsListBinding
 import com.ficha.dd.presentation.SpellsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -16,7 +15,7 @@ class SpellsListActivity : AppCompatActivity() {
 
     private val binding get() = _binding
 
-    private val viewModel : SpellsViewModel by viewModel()
+    private val viewModel: SpellsViewModel by viewModel()
 
     private val adapter = SpellsListAdapter()
 
@@ -29,7 +28,6 @@ class SpellsListActivity : AppCompatActivity() {
         setContentView(view)
         setupViews()
         setupObservers()
-        loadBDInfo()
     }
 
     private fun setupViews() {
@@ -42,14 +40,8 @@ class SpellsListActivity : AppCompatActivity() {
     }
 
     private fun setupObservers() {
-        viewModel.allSpells.observe(this) { list->
+        viewModel.allSpells.observe(this) { list ->
             adapter.setSpells(list)
         }
-    }
-
-    private fun loadBDInfo(){
-        val db = AppDatabase.getDatabase(this).SpellDAO()
-        db.getSpellByIndex("acid-arrow")
-
     }
 }

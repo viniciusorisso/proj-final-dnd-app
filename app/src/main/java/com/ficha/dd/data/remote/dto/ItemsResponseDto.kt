@@ -1,6 +1,6 @@
-package com.ficha.dd.data.dto
+package com.ficha.dd.data.remote.dto
 
-import com.ficha.dd.data.dto.ResponseItemDto.ItemDto
+import com.ficha.dd.data.remote.dto.ResponseItemDto.ItemDto
 import com.squareup.moshi.Json
 
 data class ItemsResponseDto (

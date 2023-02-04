@@ -4,17 +4,19 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ficha.dd.databinding.SpellsListItemBinding
-import com.ficha.dd.domain.Element.Spell
+import com.ficha.dd.domain.model.Spell
 
 class SpellsListAdapter() :
     RecyclerView.Adapter<SpellsListAdapter.ViewHolder>() {
 
     private val spells: MutableList<Spell> = mutableListOf()
 
-    fun setSpells(spellsList: List<Spell>) {
-        spells.clear()
-        spells.addAll(spellsList)
-        notifyDataSetChanged()
+    fun setSpells(spellsList: List<Spell>?) {
+        if(!spellsList.isNullOrEmpty()){
+            spells.clear()
+            spells.addAll(spellsList)
+            notifyDataSetChanged()
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

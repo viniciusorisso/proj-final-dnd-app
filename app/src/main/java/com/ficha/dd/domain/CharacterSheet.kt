@@ -1,7 +1,8 @@
 package com.ficha.dd.domain
 
-import com.ficha.dd.domain.Element.Item
-import com.ficha.dd.domain.Element.Spell
+import com.ficha.dd.domain.model.Item
+import com.ficha.dd.domain.model.Spell
+
 
 data class CharacterSheet (
     val name: String,

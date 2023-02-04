@@ -4,9 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ficha.dd.data.ItemsRepository
-import com.ficha.dd.domain.Element
-import com.ficha.dd.domain.Element.Item
+import com.ficha.dd.data.repository.ItemsRepository
+import com.ficha.dd.domain.model.Item
 import kotlinx.coroutines.launch
 
 class ItemsViewModel(val repository: ItemsRepository) : ViewModel() {
