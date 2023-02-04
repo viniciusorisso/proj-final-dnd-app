@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ItemsViewModel(val repository: ItemRepository) : ViewModel() {
+class ItemsViewModel(private val repository: ItemRepository) : ViewModel() {
     private val _allItems = MutableLiveData<List<Item>?>()
     val allItems: LiveData<List<Item>?> = _allItems
 

@@ -4,6 +4,8 @@ import com.ficha.dd.data.mapper.toCharacterSheet
 import com.ficha.dd.data.mapper.toCharacterSheetEntity
 import com.ficha.dd.data.room.DndDatabase
 import com.ficha.dd.domain.model.CharacterSheet
+import com.ficha.dd.domain.model.Item
+import com.ficha.dd.domain.model.Spell
 import com.ficha.dd.domain.repository.CharacterSheetRepository
 import com.ficha.dd.util.Resource
 import kotlinx.coroutines.Dispatchers
@@ -60,4 +62,20 @@ class CharacterSheetRepositoryImpl (
                 emit(Resource.Loading(false))
             }
         }
+
+    override suspend fun pushNewCharacterSpell(spell: Spell): Flow<Resource<Boolean>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun removeCharacterSpell(index: String): Flow<Resource<Boolean>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun pushNewCharacterItem(item: Item): Flow<Resource<Boolean>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun removeCharacterItem(index: String): Flow<Resource<Boolean>> {
+        TODO("Not yet implemented")
+    }
 }

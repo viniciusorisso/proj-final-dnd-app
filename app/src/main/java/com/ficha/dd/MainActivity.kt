@@ -1,21 +1,31 @@
 package com.ficha.dd
 
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.ficha.dd.databinding.ActivityMainBinding
+import com.ficha.dd.domain.model.CharacterSheet
+import com.ficha.dd.presentation.viewModel.MainViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    private val viewModel : MainViewModel by viewModel()
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        val character = savedInstanceState?.getParcelable("character", CharacterSheet::class.java)
+        character?.let { viewModel.updateCharacter(it) }
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -31,5 +41,14 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    companion object {
+        fun newIntent(character: CharacterSheet): Intent {
+            val intent: Intent = Intent()
+            val bundle = intent.extras
+            bundle?.putParcelable("character", character)
+            return intent
+        }
     }
 }

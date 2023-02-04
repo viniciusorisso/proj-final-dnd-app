@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class CharactersSheetViewModel  (val repository: CharacterSheetRepository) : ViewModel() {
+class CharactersSheetViewModel  (private val repository: CharacterSheetRepository) : ViewModel() {
     private val _allSheets = MutableLiveData<List<CharacterSheet>?>()
     val allSheets: LiveData<List<CharacterSheet>?> = _allSheets
 

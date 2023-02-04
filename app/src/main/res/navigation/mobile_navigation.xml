@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_notifications">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -19,7 +19,11 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.ficha.dd.presentation.ui.notifications.NotificationsFragment"
+        android:name="com.ficha.dd.presentation.ui.notifications.CharacterSpellsFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_character_spell" />
+    <activity
+        android:id="@+id/characterSheetsActivity"
+        android:name="com.ficha.dd.presentation.ui.character_sheets_list.CharacterSheetsActivity"
+        android:label="CharacterSheetsActivity" />
 </navigation>

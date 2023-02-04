@@ -13,6 +13,7 @@ import com.ficha.dd.data.room.DndDatabase
 import com.ficha.dd.domain.repository.CharacterSheetRepository
 import com.ficha.dd.domain.repository.ItemRepository
 import com.ficha.dd.domain.repository.SpellRepository
+import com.ficha.dd.presentation.ui.notifications.CharacterSpellsViewModel
 import com.ficha.dd.presentation.viewModel.CharactersSheetViewModel
 import com.ficha.dd.presentation.viewModel.ItemsViewModel
 import com.ficha.dd.presentation.viewModel.MainViewModel
@@ -40,6 +41,9 @@ val dndAppModule = module{
     }
     viewModel {
         ItemsViewModel(repository = get())
+    }
+    viewModel {
+        CharacterSpellsViewModel(repository = get())
     }
     single <CharacterSheetRepository> {
         CharacterSheetRepositoryImpl(db = get())

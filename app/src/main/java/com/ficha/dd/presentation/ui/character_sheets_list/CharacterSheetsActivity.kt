@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ficha.dd.MainActivity
 import com.ficha.dd.databinding.CharacterSheetsListBinding
+import com.ficha.dd.domain.model.CharacterSheet
 import com.ficha.dd.presentation.viewModel.CharactersSheetViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -17,7 +18,9 @@ class CharacterSheetsActivity : AppCompatActivity() {
 
     private val viewModel : CharactersSheetViewModel by viewModel()
 
-    private val adapter = CharacterSheetsAdapter()
+    private val adapter = CharacterSheetsAdapter() {
+        goToCharacterSheetDetails(it)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +39,17 @@ class CharacterSheetsActivity : AppCompatActivity() {
         binding.root.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    private fun goToCharacterSheetDetails(character: CharacterSheet) {
+        val intent = MainActivity.newIntent(character)
+        try {
+
+            startActivity(intent)
+        }
+        catch (e: Throwable) {
+            e.printStackTrace()
         }
     }
 

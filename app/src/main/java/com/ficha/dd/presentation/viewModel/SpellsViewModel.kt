@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class SpellsViewModel(val repository: SpellRepository) : ViewModel() {
+class SpellsViewModel(private val repository: SpellRepository) : ViewModel() {
     private val _allSpells = MutableLiveData<List<Spell>?>()
     val allSpells: LiveData<List<Spell>?> = _allSpells
 
