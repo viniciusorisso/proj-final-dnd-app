@@ -11,10 +11,13 @@ class ItemsListAdapter() :
 
     private val items: MutableList<Item> = mutableListOf()
 
-    fun setItems(itemsList: List<Item>) {
-        items.clear()
-        items.addAll(itemsList)
-        notifyDataSetChanged()
+    fun setItems(itemsList: List<Item>?) {
+        if(!itemsList.isNullOrEmpty()) {
+            items.clear()
+            items.addAll(itemsList)
+            notifyDataSetChanged()
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

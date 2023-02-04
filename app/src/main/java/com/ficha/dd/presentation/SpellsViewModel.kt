@@ -21,7 +21,8 @@ class SpellsViewModel(val repository: SpellRepository) : ViewModel() {
         }
     }
 
-    suspend fun loadInfo() = withContext(Dispatchers.IO) {repository.getSpellsList().collect{
+    suspend fun loadInfo() = withContext(Dispatchers.IO) {
+        repository.getSpellsList().collect {
             when (it) {
                 is Resource.Success -> {
                     _allSpells.postValue(it.data)

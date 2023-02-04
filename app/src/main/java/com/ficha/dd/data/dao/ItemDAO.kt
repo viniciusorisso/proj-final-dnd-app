@@ -1,20 +1,20 @@
 package com.ficha.dd.data.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
+import androidx.room.*
 import com.ficha.dd.data.local.ItemEntity
 
 @Dao
 interface ItemDAO {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertItem(itemsList: List<ItemEntity>)
 
-    @Insert
-    fun insert(p: ItemEntity)
+    @Query("DELETE FROM item")
+    suspend fun clearItemsList()
 
-    @Insert
-    fun update(p: ItemEntity)
+    @Query("SELECT * FROM item WHERE itemIndex = :index")
+    fun getItemByIndex(index: String): ItemEntity
 
-    @Delete
-    fun delete(p: ItemEntity)
+    @Query("SELECT * FROM item")
+    suspend fun getAllItems(): List<ItemEntity>
 
 }

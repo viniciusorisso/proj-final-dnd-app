@@ -6,8 +6,10 @@ import com.ficha.dd.data.dao.ItemDAO
 import com.ficha.dd.data.dao.SpellDAO
 import com.ficha.dd.data.remote.DndApi
 import com.ficha.dd.data.remote.DndApi.Companion.BASE_URL
+import com.ficha.dd.data.repository.ItemRepositoryImpl
 import com.ficha.dd.data.repository.SpellRepositoryImpl
 import com.ficha.dd.data.room.DndDatabase
+import com.ficha.dd.domain.repository.ItemRepository
 import com.ficha.dd.domain.repository.SpellRepository
 import com.ficha.dd.presentation.ItemsViewModel
 import com.ficha.dd.presentation.MainViewModel
@@ -40,6 +42,9 @@ val dndAppModule = module{
     }
     single <SpellRepository> {
         SpellRepositoryImpl(api = get(), db = get())
+    }
+    single <ItemRepository> {
+        ItemRepositoryImpl(api = get(), db = get())
     }
     single {
         OkHttpClient.Builder()
