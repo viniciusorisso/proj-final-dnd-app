@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ficha.dd.MainActivity
 import com.ficha.dd.databinding.CharacterSheetsListBinding
-import com.ficha.dd.presentation.MainViewModel
+import com.ficha.dd.presentation.viewModel.CharactersSheetViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CharacterSheetsActivity : AppCompatActivity() {
@@ -15,7 +15,7 @@ class CharacterSheetsActivity : AppCompatActivity() {
 
     private val binding get() = _binding
 
-    private val viewModel : MainViewModel by viewModel()
+    private val viewModel : CharactersSheetViewModel by viewModel()
 
     private val adapter = CharacterSheetsAdapter()
 

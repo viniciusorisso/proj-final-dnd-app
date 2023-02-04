@@ -4,17 +4,19 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ficha.dd.databinding.CharacterSheetItemBinding
-import com.ficha.dd.domain.CharacterSheet
+import com.ficha.dd.domain.model.CharacterSheet
 
 class CharacterSheetsAdapter() :
     RecyclerView.Adapter<CharacterSheetsAdapter.ViewHolder>() {
 
     private val characters: MutableList<CharacterSheet> = mutableListOf()
 
-    fun setItems(charactersSheetList: List<CharacterSheet>) {
-        characters.clear()
-        characters.addAll(charactersSheetList)
-        notifyDataSetChanged()
+    fun setItems(charactersSheetList: List<CharacterSheet>?) {
+        if(!charactersSheetList.isNullOrEmpty()) {
+            characters.clear()
+            characters.addAll(charactersSheetList)
+            notifyDataSetChanged()
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -35,7 +37,7 @@ class CharacterSheetsAdapter() :
         fun bind (character : CharacterSheet) = with(itemBinding) {
             this.characterName.text = character.name
             this.characterLevel.text = character.level.toString()
-            this.characterClassy.text = character.classy
+            this.characterSpellsQtd.text = character.spellsList?.size.toString()
         }
     }
 }

@@ -15,7 +15,7 @@
         android:name=".DndApplication"
         >
         <activity
-            android:name=".presentation.ui.items_list.ItemsListActivity"
+            android:name=".presentation.ui.character_sheets_list.CharacterSheetsActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
@@ -28,7 +28,7 @@
             android:name=".presentation.ui.spells_list.SpellsListActivity">
         </activity>
         <activity
-            android:name=".presentation.ui.character_sheets_list.CharacterSheetsActivity">
+            android:name=".presentation.ui.items_list.ItemsListActivity">
         </activity>
         <activity android:name=".MainActivity">
         </activity>

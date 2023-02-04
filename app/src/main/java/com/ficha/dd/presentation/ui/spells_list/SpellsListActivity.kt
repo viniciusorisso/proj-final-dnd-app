@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ficha.dd.MainActivity
 import com.ficha.dd.databinding.SpellsListBinding
-import com.ficha.dd.presentation.SpellsViewModel
+import com.ficha.dd.presentation.viewModel.SpellsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SpellsListActivity : AppCompatActivity() {

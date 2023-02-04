@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ficha.dd.MainActivity
 import com.ficha.dd.databinding.ItemsListBinding
-import com.ficha.dd.presentation.ItemsViewModel
+import com.ficha.dd.presentation.viewModel.ItemsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ItemsListActivity : AppCompatActivity() {
