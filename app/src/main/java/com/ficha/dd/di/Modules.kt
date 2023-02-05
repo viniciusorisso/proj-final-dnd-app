@@ -30,10 +30,13 @@ val dndAppModule = module{
         MainViewModel(repository = get())
     }
     viewModel {
+        ItemDetailsViewModel(repository = get())
+    }
+    viewModel {
         CharactersSheetViewModel(repository = get())
     }
     viewModel {
-        CharacterItemsViewModel(repository = get())
+        SheetItemsViewModel(repository = get())
     }
     viewModel {
         SpellsViewModel(repository = get())

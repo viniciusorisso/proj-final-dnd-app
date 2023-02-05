@@ -11,11 +11,16 @@ class SheetSpellsAdapter() :
 
     private val spells: MutableList<Spell> = mutableListOf()
 
+    private var filteredList: MutableList<Spell> = mutableListOf()
+
     fun setSpells(spellsList: List<Spell>?) {
         if(!spellsList.isNullOrEmpty()){
             spells.clear()
             spells.addAll(spellsList)
             notifyDataSetChanged()
+        }
+        spells.map {
+            filteredList.add(it)
         }
     }
 
@@ -25,12 +30,24 @@ class SheetSpellsAdapter() :
     }
 
     override fun getItemCount(): Int {
-        return spells.size
+        return filteredList.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val spell = spells[position]
+        val spell = filteredList[position]
         holder.bind(spell)
+    }
+    fun filterSpellsList(spellName: String?) {
+        filteredList.clear()
+        spells.map {
+            if(spellName.isNullOrEmpty())
+                filteredList.add(it)
+            else{
+                if(it.name.lowercase().contains(spellName.lowercase()))
+                    filteredList.add(it) else {}
+            }
+        }
+        notifyDataSetChanged()
     }
 
     class ViewHolder (private val itemBinding: SpellsListItemBinding) : RecyclerView.ViewHolder(itemBinding.root){

@@ -1,26 +1,25 @@
-package com.ficha.dd.presentation.ui.character_item
+package com.ficha.dd.presentation.ui.sheets_items
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ficha.dd.databinding.FragmentCharacterItemBinding
-import com.ficha.dd.presentation.viewModel.CharacterItemsViewModel
+import com.ficha.dd.presentation.viewModel.SheetItemsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CharacterItemsFragment : Fragment() {
+class SheetItemsFragment : Fragment() {
 
     private var _binding: FragmentCharacterItemBinding? = null
 
     private val binding get() = _binding!!
 
-    private val viewModel: CharacterItemsViewModel by viewModel()
+    private val viewModel: SheetItemsViewModel by viewModel()
 
-    private val adapter = CharacterItemsAdapter()
+    private val adapter = SheetItemsAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,21 +28,6 @@ class CharacterItemsFragment : Fragment() {
     ): View {
         _binding = FragmentCharacterItemBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        binding.itemsSearchView.clearFocus()
-        binding.itemsSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
-            androidx.appcompat.widget.SearchView.OnQueryTextListener {
-
-            override fun onQueryTextChange(p0: String?): Boolean {
-                adapter.filterItemsList(p0)
-                return false
-            }
-
-            override fun onQueryTextSubmit(p0: String?): Boolean {
-                return false
-            }
-        })
-
 
         setupViews()
         setObservers()
@@ -58,6 +42,20 @@ class CharacterItemsFragment : Fragment() {
     private fun setupViews() {
         binding.characterSheetsItemsList.adapter = adapter
         binding.characterSheetsItemsList.layoutManager = LinearLayoutManager(context)
+        binding.itemsSearchView.clearFocus()
+        binding.itemsSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                adapter.filterItemsList(p0)
+                return false
+            }
+
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                return false
+            }
+        })
+
     }
     private fun setObservers() {
         viewModel.allItems.observe(viewLifecycleOwner) {

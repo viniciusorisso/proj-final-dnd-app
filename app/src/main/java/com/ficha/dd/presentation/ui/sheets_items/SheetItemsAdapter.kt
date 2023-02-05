@@ -1,4 +1,4 @@
-package com.ficha.dd.presentation.ui.character_item
+package com.ficha.dd.presentation.ui.sheets_items
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ficha.dd.databinding.ItemsListItemBinding
 import com.ficha.dd.domain.model.Item
 
-class CharacterItemsAdapter() :
-    RecyclerView.Adapter<CharacterItemsAdapter.ViewHolder>() {
+class SheetItemsAdapter() :
+    RecyclerView.Adapter<SheetItemsAdapter.ViewHolder>() {
 
     private val items: MutableList<Item> = mutableListOf()
 
@@ -18,6 +18,9 @@ class CharacterItemsAdapter() :
             items.clear()
             items.addAll(itemsList)
             notifyDataSetChanged()
+        }
+        items.map {
+            filteredList.add(it)
         }
     }
 
@@ -36,7 +39,6 @@ class CharacterItemsAdapter() :
     }
     fun filterItemsList(itemName: String?) {
         filteredList.clear()
-        filteredList.add(Item("name", items.size.toString(), "name"))
         items.map {
             if(itemName.isNullOrEmpty())
                 filteredList.add(it)

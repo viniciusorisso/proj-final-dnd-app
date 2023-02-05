@@ -14,7 +14,7 @@
 
     <fragment
         android:id="@+id/navigation_character_items"
-        android:name="com.ficha.dd.presentation.ui.character_item.CharacterItemsFragment"
+        android:name="com.ficha.dd.presentation.ui.sheets_items.SheetItemsFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_character_item" />
 

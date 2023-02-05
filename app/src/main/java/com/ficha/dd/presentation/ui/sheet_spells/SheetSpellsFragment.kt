@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ficha.dd.databinding.FragmentCharacterSpellBinding
@@ -41,6 +42,19 @@ class SheetSpellsFragment : Fragment() {
     private fun setupViews() {
         binding.characterSheetsSpellsList.adapter = adapter
         binding.characterSheetsSpellsList.layoutManager = LinearLayoutManager(context)
+        binding.spellsSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                adapter.filterSpellsList(p0)
+                return false
+            }
+
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                return false
+            }
+        })
+
     }
     private fun setObservers() {
         characterSpellViewModel.allSpells.observe(viewLifecycleOwner) {
