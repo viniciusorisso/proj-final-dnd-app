@@ -41,6 +41,8 @@
                     <category android:name="android.intent.category.LAUNCHER" />
                 </intent-filter>
         </activity>
+        <activity android:name=".presentation.ui.item_details.ItemDetailsActivity">
+        </activity>
     </application>
 
 </manifest>

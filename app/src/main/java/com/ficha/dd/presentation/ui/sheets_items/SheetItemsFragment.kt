@@ -71,7 +71,7 @@ class SheetItemsFragment : Fragment() {
     }
 
     private fun goToItemDetails(item: Item) {
-        val intent = Intent(layout, ItemDetailsActivity::class.java)
+        val intent = ItemDetailsActivity.newIntent(requireContext(), item)
         startActivity(intent)
     }
 }

@@ -45,8 +45,4 @@ class ItemsListActivity : AppCompatActivity() {
         }
     }
 
-    private fun goToCharacterSheetDetails(item: Item) {
-        val intent = ItemDetailsActivity.newIntent(this ,item)
-        startActivity(intent)
-    }
 }

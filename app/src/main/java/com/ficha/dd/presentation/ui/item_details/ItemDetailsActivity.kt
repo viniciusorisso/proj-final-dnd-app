@@ -18,8 +18,6 @@ class ItemDetailsActivity : AppCompatActivity(){
 
     private val viewModel: ItemDetailsViewModel by viewModel()
 
-    private val adapter = ItemDetailsAdapter()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ItemDetailsBinding.inflate(layoutInflater)
