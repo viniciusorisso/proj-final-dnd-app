@@ -4,9 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ficha.dd.databinding.ItemsListItemBinding
+import com.ficha.dd.domain.model.CharacterSheet
 import com.ficha.dd.domain.model.Item
 
-class SheetItemsAdapter() :
+class SheetItemsAdapter(val onClick: (Item) -> Unit) :
     RecyclerView.Adapter<SheetItemsAdapter.ViewHolder>() {
 
     private val items: MutableList<Item> = mutableListOf()
