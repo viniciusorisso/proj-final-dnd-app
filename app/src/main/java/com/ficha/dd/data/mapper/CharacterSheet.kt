@@ -10,7 +10,6 @@ fun CharacterSheetEntity.toCharacterSheet(): CharacterSheet {
         level = level,
         spellsList = spellsList,
         itemsList = itemsList,
-        attributes = attributes,
     )
 }
 fun CharacterSheet.toCharacterSheetEntity(): CharacterSheetEntity {
@@ -20,6 +19,5 @@ fun CharacterSheet.toCharacterSheetEntity(): CharacterSheetEntity {
         level = level,
         spellsList = spellsList,
         itemsList = itemsList,
-        attributes = attributes,
     )
 }

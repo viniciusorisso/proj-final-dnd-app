@@ -25,8 +25,6 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val character = savedInstanceState?.getParcelable("character", CharacterSheet::class.java)
-        character?.let { viewModel.updateCharacter(it) }
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -42,14 +40,5 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-    }
-
-    companion object {
-        fun newIntent(context: Context,character: CharacterSheet): Intent {
-            val intent: Intent = Intent(context, MainActivity::class.java)
-            val bundle = intent.extras
-            bundle?.putParcelable("character", character)
-            return intent
-        }
     }
 }

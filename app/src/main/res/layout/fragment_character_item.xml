@@ -6,15 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".presentation.ui.character_item.CharacterItemsFragment">
 
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/items_search_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="8dp"
+        app:iconifiedByDefault="false"
+        app:layout_constraintBottom_toTopOf="@+id/character_sheets_items_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:queryHint="Nome do Item ....">
+
+    </androidx.appcompat.widget.SearchView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/items_search_view"
         app:layout_constraintLeft_toLeftOf="parent"
         tools:listitem="@layout/items_list_item"
-        tools:itemCount="5"
+        tools:itemCount="9"
         android:id="@+id/character_sheets_items_list"
         >
 
     </androidx.recyclerview.widget.RecyclerView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

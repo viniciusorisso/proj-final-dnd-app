@@ -39,7 +39,7 @@ class CharacterSheetsActivity : AppCompatActivity() {
     }
 
     private fun goToCharacterSheetDetails(character: CharacterSheet) {
-        val intent = MainActivity.newIntent(this ,character)
+        val intent = Intent(this,MainActivity::class.java)
         startActivity(intent)
     }
 

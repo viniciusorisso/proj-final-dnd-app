@@ -20,10 +20,6 @@ class CharacterDetailsFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    private val viewModel by activityViewModel<MainViewModel>()
-
-    private val characterDetailsViewModel : CharacterDetailsViewModel by viewModel()
-
     private val adapter = CharacterDetailsAdapter()
 
     override fun onCreateView(
@@ -48,13 +44,8 @@ class CharacterDetailsFragment : Fragment() {
     }
 
     private fun setObservers() {
-        characterDetailsViewModel.attributes.observe(viewLifecycleOwner) {
-            adapter.setAttributeNewValue(it)
-        }
     }
 
     private fun setupViews() {
-        binding.attributes.adapter = adapter
-        binding.attributes.layoutManager = LinearLayoutManager(context)
     }
 }

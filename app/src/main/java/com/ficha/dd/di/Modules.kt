@@ -13,11 +13,7 @@ import com.ficha.dd.data.room.DndDatabase
 import com.ficha.dd.domain.repository.CharacterSheetRepository
 import com.ficha.dd.domain.repository.ItemRepository
 import com.ficha.dd.domain.repository.SpellRepository
-import com.ficha.dd.presentation.viewModel.CharacterSpellsViewModel
-import com.ficha.dd.presentation.viewModel.CharactersSheetViewModel
-import com.ficha.dd.presentation.viewModel.ItemsViewModel
-import com.ficha.dd.presentation.viewModel.MainViewModel
-import com.ficha.dd.presentation.viewModel.SpellsViewModel
+import com.ficha.dd.presentation.viewModel.*
 import com.ficha.dd.util.JsonUtils
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -37,13 +33,16 @@ val dndAppModule = module{
         CharactersSheetViewModel(repository = get())
     }
     viewModel {
+        CharacterItemsViewModel(repository = get())
+    }
+    viewModel {
         SpellsViewModel(repository = get())
     }
     viewModel {
         ItemsViewModel(repository = get())
     }
     viewModel {
-        CharacterSpellsViewModel(repository = get())
+        SheetSpellsViewModel(repository = get())
     }
     single <CharacterSheetRepository> {
         CharacterSheetRepositoryImpl(db = get())

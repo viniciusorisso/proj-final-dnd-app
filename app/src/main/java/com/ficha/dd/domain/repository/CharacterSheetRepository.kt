@@ -10,12 +10,4 @@ interface CharacterSheetRepository {
     suspend fun getCharacterSheetById(id: Int): Flow<Resource<CharacterSheet>>
 
     suspend fun pushNewCharacterSheet(characterSheet: CharacterSheet): Flow<Resource<Boolean>>
-
-//    suspend fun pushNewCharacterSpell(spell: Spell): Flow<Resource<Boolean>>
-//
-//    suspend fun removeCharacterSpell(index: String): Flow<Resource<Boolean>>
-//
-//    suspend fun pushNewCharacterItem(item: Item): Flow<Resource<Boolean>>
-//
-//    suspend fun removeCharacterItem(index: String): Flow<Resource<Boolean>>
 }

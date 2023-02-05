@@ -1,4 +1,4 @@
-package com.ficha.dd.presentation.ui.character_spells
+package com.ficha.dd.presentation.ui.sheet_spells
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ficha.dd.databinding.SpellsListItemBinding
 import com.ficha.dd.domain.model.Spell
 
-class CharacterSpellsAdapter() :
-    RecyclerView.Adapter<CharacterSpellsAdapter.ViewHolder>() {
+class SheetSpellsAdapter() :
+    RecyclerView.Adapter<SheetSpellsAdapter.ViewHolder>() {
 
     private val spells: MutableList<Spell> = mutableListOf()
 
@@ -36,8 +36,6 @@ class CharacterSpellsAdapter() :
     class ViewHolder (private val itemBinding: SpellsListItemBinding) : RecyclerView.ViewHolder(itemBinding.root){
         fun bind (spell: Spell) = with(itemBinding) {
             this.spellName.text = spell.name
-            this.spellUrl.text = spell.url
-            this.spellIndex.text = spell.index
         }
     }
 }
