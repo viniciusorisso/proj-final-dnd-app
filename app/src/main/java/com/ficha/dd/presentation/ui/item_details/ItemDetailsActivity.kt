@@ -3,6 +3,7 @@ package com.ficha.dd.presentation.ui.item_details
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.ficha.dd.databinding.ItemDetailsBinding
+import com.ficha.dd.domain.model.CharacterSheet
 import com.ficha.dd.domain.model.Item
 import com.ficha.dd.presentation.viewModel.ItemDetailsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -19,6 +20,9 @@ class ItemDetailsActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ItemDetailsBinding.inflate(layoutInflater)
+
+        val item = savedInstanceState?.getParcelable("item", Item::class.java)
+        item?.let { viewModel.updateItem(it) }
 
         viewModel.updateItem(Item("name", "name","name"))
 
