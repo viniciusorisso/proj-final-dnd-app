@@ -1,5 +1,6 @@
 package com.ficha.dd.presentation.ui.sheets_items
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +8,11 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ficha.dd.MainActivity
 import com.ficha.dd.databinding.FragmentCharacterItemBinding
+import com.ficha.dd.domain.model.CharacterSheet
+import com.ficha.dd.domain.model.Item
+import com.ficha.dd.presentation.ui.item_details.ItemDetailsActivity
 import com.ficha.dd.presentation.viewModel.SheetItemsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -19,7 +24,9 @@ class SheetItemsFragment : Fragment() {
 
     private val viewModel: SheetItemsViewModel by viewModel()
 
-    private val adapter = SheetItemsAdapter()
+    private val adapter = SheetItemsAdapter(){
+        goToItemDetails(it)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,5 +68,10 @@ class SheetItemsFragment : Fragment() {
         viewModel.allItems.observe(viewLifecycleOwner) {
             adapter.setItems(it)
         }
+    }
+
+    private fun goToItemDetails(item: Item) {
+        val intent = Intent(layout, ItemDetailsActivity::class.java)
+        startActivity(intent)
     }
 }

@@ -36,7 +36,7 @@ class SheetItemsAdapter(val onClick: (Item) -> Unit) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = filteredList[position]
-        holder.bind(item)
+        holder.bind(item, onClick)
     }
     fun filterItemsList(itemName: String?) {
         filteredList.clear()
@@ -52,8 +52,12 @@ class SheetItemsAdapter(val onClick: (Item) -> Unit) :
     }
 
     class ViewHolder (private val itemBinding: ItemsListItemBinding) : RecyclerView.ViewHolder(itemBinding.root){
-        fun bind (item: Item) = with(itemBinding) {
+        fun bind (item: Item, onClick: (Item) -> Unit) = with(itemBinding) {
             this.itemName.text = item.name
+
+            root.setOnClickListener{
+                onClick(item)
+            }
         }
     }
 }
