@@ -33,10 +33,6 @@ class SpellsListActivity : AppCompatActivity() {
     private fun setupViews() {
         binding.spellsList.adapter = adapter
         binding.spellsList.layoutManager = LinearLayoutManager(this)
-        binding.root.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     private fun setupObservers() {

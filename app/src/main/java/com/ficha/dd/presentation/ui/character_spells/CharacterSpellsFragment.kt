@@ -1,4 +1,4 @@
-package com.ficha.dd.presentation.ui.notifications
+package com.ficha.dd.presentation.ui.character_spells
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ficha.dd.databinding.FragmentCharacterSpellBinding
+import com.ficha.dd.presentation.viewModel.CharacterSpellsViewModel
 import com.ficha.dd.presentation.viewModel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -30,7 +31,6 @@ class CharacterSpellsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewModel.character
         _binding = FragmentCharacterSpellBinding.inflate(inflater, container, false)
         val root: View = binding.root
 

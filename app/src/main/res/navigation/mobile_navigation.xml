@@ -3,23 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_notifications">
+    app:startDestination="@+id/navigation_character_spells"
+    >
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.ficha.dd.presentation.ui.home.HomeFragment"
+        android:id="@+id/navigation_character_details"
+        android:name="com.ficha.dd.presentation.ui.character_details.`CharacterDetailsFrag e t`"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_character_details" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.ficha.dd.presentation.ui.dashboard.DashboardFragment"
+        android:id="@+id/navigation_character_items"
+        android:name="com.ficha.dd.presentation.ui.character_item.CharacterItemsFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_character_item" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.ficha.dd.presentation.ui.notifications.CharacterSpellsFragment"
+        android:id="@+id/navigation_character_spells"
+        android:name="com.ficha.dd.presentation.ui.character_spells.CharacterSpellsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_character_spell" />
     <activity

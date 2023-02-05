@@ -21,9 +21,7 @@ class CharacterSheetsAdapter(val onClick: (CharacterSheet) -> Unit) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding = CharacterSheetItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(itemBinding).apply {
-
-        }
+        return ViewHolder(itemBinding)
     }
 
     override fun getItemCount(): Int {

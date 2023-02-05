@@ -33,10 +33,6 @@ class ItemsListActivity : AppCompatActivity() {
     private fun setupViews() {
         binding.itemsList.adapter = adapter
         binding.itemsList.layoutManager = LinearLayoutManager(this)
-        binding.root.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     private fun setupObservers() {

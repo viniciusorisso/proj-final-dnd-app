@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ficha.dd.domain.model.CharacterAttributes
 import com.ficha.dd.domain.model.CharacterSheet
+import com.ficha.dd.domain.model.Item
 import com.ficha.dd.domain.model.Spell
 import com.ficha.dd.domain.repository.CharacterSheetRepository
 import com.ficha.dd.util.Resource
@@ -25,10 +27,12 @@ class CharactersSheetViewModel  (private val repository: CharacterSheetRepositor
 
     suspend fun loadInfo() = withContext(Dispatchers.IO) {
         val spellList: List<Spell> = listOf(Spell("acid-arrow", "Acid Arrow", "url"), Spell("acid-arrow", "Acid Arrow", "url"))
+        val itemsList: List<Item> = listOf(Item("acid-arrow", "Acid Arrow", "url"), Item("acid-arrow", "Acid Arrow", "url"))
+        val attributes: CharacterAttributes = CharacterAttributes(10,10,10,10,10,10)
 
         repository.pushNewCharacterSheet(
             CharacterSheet(
-                0, "Joao", 12, spellList, null
+                0, "Joao", 12, spellList, itemsList, attributes
             )
         ).collect{
             when (it) {

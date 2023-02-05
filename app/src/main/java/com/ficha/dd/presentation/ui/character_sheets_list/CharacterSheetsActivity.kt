@@ -36,21 +36,11 @@ class CharacterSheetsActivity : AppCompatActivity() {
     private fun setupViews() {
         binding.characterSheetsList.adapter = adapter
         binding.characterSheetsList.layoutManager = LinearLayoutManager(this)
-        binding.root.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     private fun goToCharacterSheetDetails(character: CharacterSheet) {
-        val intent = MainActivity.newIntent(character)
-        try {
-
-            startActivity(intent)
-        }
-        catch (e: Throwable) {
-            e.printStackTrace()
-        }
+        val intent = MainActivity.newIntent(this ,character)
+        startActivity(intent)
     }
 
     private fun setupObservers() {

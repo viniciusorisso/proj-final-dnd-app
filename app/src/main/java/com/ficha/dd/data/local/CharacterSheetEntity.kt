@@ -3,6 +3,7 @@ package com.ficha.dd.data.local
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
+import com.ficha.dd.domain.model.CharacterAttributes
 import com.ficha.dd.domain.model.Item
 import com.ficha.dd.domain.model.Spell
 import com.ficha.dd.util.JsonUtils
@@ -16,7 +17,8 @@ class CharacterSheetEntity (
     var name : String,
     var level: Int?,
     var spellsList: List<Spell>?,
-    var itemsList: List<Item>?
+    var itemsList: List<Item>?,
+    var attributes: CharacterAttributes,
 )
 
 
@@ -35,4 +37,10 @@ class ObjectTypeConverter: KoinComponent {
 
     @TypeConverter
     fun stringToItem(myObjStr: String): List<Item>? = jsonUtils.convertJsonToObject(myObjStr)
+
+    @TypeConverter
+    fun attributesToString(myObj: CharacterAttributes): String = jsonUtils.convertObjectToJson(myObj)
+
+    @TypeConverter
+    fun stringToAttributes(myObjStr: String): CharacterAttributes? = jsonUtils.convertJsonToObject(myObjStr)
 }

@@ -1,4 +1,4 @@
-package com.ficha.dd.presentation.ui.notifications
+package com.ficha.dd.presentation.ui.character_spells
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

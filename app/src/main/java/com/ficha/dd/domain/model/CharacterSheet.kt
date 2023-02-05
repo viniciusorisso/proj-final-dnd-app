@@ -9,5 +9,6 @@ class CharacterSheet (
     var name : String,
     var level: Int?,
     var spellsList: List<Spell>?,
-    var itemsList: List<Item>?
+    var itemsList: List<Item>?,
+    var attributes: CharacterAttributes
 ) : Parcelable

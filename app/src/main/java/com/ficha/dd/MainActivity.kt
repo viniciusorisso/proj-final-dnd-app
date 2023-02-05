@@ -1,5 +1,6 @@
 package com.ficha.dd
 
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -44,8 +45,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        fun newIntent(character: CharacterSheet): Intent {
-            val intent: Intent = Intent()
+        fun newIntent(context: Context,character: CharacterSheet): Intent {
+            val intent: Intent = Intent(context, MainActivity::class.java)
             val bundle = intent.extras
             bundle?.putParcelable("character", character)
             return intent
