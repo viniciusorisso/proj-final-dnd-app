@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Ficha D&amp;D</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">Roll Dice</string>
+    <string name="title_dashboard">Items</string>
+    <string name="title_notifications">Spells</string>
 </resources>

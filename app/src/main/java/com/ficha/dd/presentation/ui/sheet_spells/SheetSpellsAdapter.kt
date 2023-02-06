@@ -4,9 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ficha.dd.databinding.SpellsListItemBinding
+import com.ficha.dd.domain.model.Item
 import com.ficha.dd.domain.model.Spell
 
-class SheetSpellsAdapter() :
+class SheetSpellsAdapter(val onClick: (Spell) -> Unit) :
     RecyclerView.Adapter<SheetSpellsAdapter.ViewHolder>() {
 
     private val spells: MutableList<Spell> = mutableListOf()
@@ -35,7 +36,7 @@ class SheetSpellsAdapter() :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val spell = filteredList[position]
-        holder.bind(spell)
+        holder.bind(spell, onClick)
     }
     fun filterSpellsList(spellName: String?) {
         filteredList.clear()
@@ -51,8 +52,13 @@ class SheetSpellsAdapter() :
     }
 
     class ViewHolder (private val itemBinding: SpellsListItemBinding) : RecyclerView.ViewHolder(itemBinding.root){
-        fun bind (spell: Spell) = with(itemBinding) {
+        fun bind (spell: Spell, onClick: (Spell) -> Unit) = with(itemBinding) {
             this.spellName.text = spell.name
+
+
+            root.setOnClickListener{
+                onClick(spell)
+            }
         }
     }
 }

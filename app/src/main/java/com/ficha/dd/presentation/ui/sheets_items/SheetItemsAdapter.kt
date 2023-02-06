@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ficha.dd.databinding.ItemsListItemBinding
-import com.ficha.dd.domain.model.CharacterSheet
 import com.ficha.dd.domain.model.Item
 
 class SheetItemsAdapter(val onClick: (Item) -> Unit) :

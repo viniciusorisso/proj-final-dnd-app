@@ -1,16 +1,13 @@
 package com.ficha.dd.di
 
 import androidx.room.Room
-import com.ficha.dd.data.dao.CharacterSheetDAO
 import com.ficha.dd.data.dao.ItemDAO
 import com.ficha.dd.data.dao.SpellDAO
 import com.ficha.dd.data.remote.DndApi
 import com.ficha.dd.data.remote.DndApi.Companion.BASE_URL
-import com.ficha.dd.data.repository.CharacterSheetRepositoryImpl
 import com.ficha.dd.data.repository.ItemRepositoryImpl
 import com.ficha.dd.data.repository.SpellRepositoryImpl
 import com.ficha.dd.data.room.DndDatabase
-import com.ficha.dd.domain.repository.CharacterSheetRepository
 import com.ficha.dd.domain.repository.ItemRepository
 import com.ficha.dd.domain.repository.SpellRepository
 import com.ficha.dd.presentation.viewModel.*
@@ -27,28 +24,19 @@ import java.util.concurrent.TimeUnit
 
 val dndAppModule = module{
     viewModel {
-        MainViewModel(repository = get())
+        ItemDetailsViewModel()
     }
     viewModel {
-        ItemDetailsViewModel(repository = get())
+        SpellDetailsViewModel()
     }
-    viewModel {
-        CharactersSheetViewModel(repository = get())
+    viewModel{
+        RollDiceViewModel()
     }
     viewModel {
         SheetItemsViewModel(repository = get())
     }
     viewModel {
-        SpellsViewModel(repository = get())
-    }
-    viewModel {
-        ItemsViewModel(repository = get())
-    }
-    viewModel {
         SheetSpellsViewModel(repository = get())
-    }
-    single <CharacterSheetRepository> {
-        CharacterSheetRepositoryImpl(db = get())
     }
     single <SpellRepository> {
         SpellRepositoryImpl(api = get(), db = get())
@@ -78,7 +66,7 @@ val dndAppModule = module{
         Room.databaseBuilder(
             androidApplication(),
             DndDatabase::class.java,
-            "dndDb.db"
+            "dndApp.db"
         ).build()
     }
     single <SpellDAO> {
@@ -88,10 +76,6 @@ val dndAppModule = module{
     single <ItemDAO> {
         val database = get <DndDatabase>()
         database.ItemDAO()
-    }
-    single <CharacterSheetDAO> {
-        val database = get <DndDatabase>()
-        database.CharacterSheetDAO()
     }
     single {
         JsonUtils(moshi = get())

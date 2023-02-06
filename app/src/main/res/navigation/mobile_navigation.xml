@@ -3,24 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_character_items"
-    >
+    app:startDestination="@+id/navigation_items_list"
+    tools:ignore="InvalidNavigation">
 
     <fragment
-        android:id="@+id/navigation_character_details"
-        android:name="com.ficha.dd.presentation.ui.character_details.CharacterDetailsFragment"
+        android:id="@+id/navigation_roll_dice"
+        android:name="com.ficha.dd.presentation.ui.character_details.RollDiceFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_character_details" />
+        tools:layout="@layout/fragment_roll_dice" />
 
     <fragment
-        android:id="@+id/navigation_character_items"
+        android:id="@+id/navigation_items_list"
         android:name="com.ficha.dd.presentation.ui.sheets_items.SheetItemsFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_character_item" />
+        tools:layout="@layout/fragment_items_list" />
 
     <fragment
-        android:id="@+id/navigation_character_spells"
+        android:id="@+id/navigation_spells_list"
         android:name="com.ficha.dd.presentation.ui.sheet_spells.SheetSpellsFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_character_spell" />
+        tools:layout="@layout/fragment_spells_list" />
 </navigation>

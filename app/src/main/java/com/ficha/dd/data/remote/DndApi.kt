@@ -1,19 +1,23 @@
 package com.ficha.dd.data.remote
 
-import com.ficha.dd.data.remote.dto.ItemsResponseDto
-import com.ficha.dd.data.remote.dto.SpellsResponseDto
+import com.ficha.dd.data.remote.dto.ItemsListResponseDto
+import com.ficha.dd.data.remote.dto.SpellsListResponseDto
+import com.ficha.dd.data.remote.dto.ItemResponseDto
+import com.ficha.dd.data.remote.dto.SpellResponseDto
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface DndApi {
-//    fun getItemByIndex(index: String): Element.Item;
+    @GET("equipment/{index}")
+    suspend fun getItemByIndex(@Path("index") index: String): ItemResponseDto;
 //    fun getSpellByIndex(index: String): Element.Spell;
     @GET("equipment/")
-    suspend fun getAllItems(): ItemsResponseDto;
+    suspend fun getAllItems(): ItemsListResponseDto;
 //
-//    @GET("equipment/")
-//    suspend fun getItemByIndex(): ItemsResponseDto;
+    @GET("spells/{index}")
+    suspend fun getSpellByIndex(@Path("index") index: String): SpellResponseDto;
     @GET("spells/")
-    suspend fun getAllSpells(): SpellsResponseDto;
+    suspend fun getAllSpells(): SpellsListResponseDto;
 
     companion object {
         const val BASE_URL = "https://www.dnd5eapi.co/api/"

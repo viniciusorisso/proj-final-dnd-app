@@ -18,6 +18,7 @@ class SheetItemsViewModel(private val repository: ItemRepository) : ViewModel() 
     private val _allItems = MutableLiveData<List<Item>?>()
     val allItems: LiveData<List<Item>?> = _allItems
 
+    var itemDetailed: Item? = null
     init {
         viewModelScope.launch {
             loadInfo()
@@ -35,8 +36,15 @@ class SheetItemsViewModel(private val repository: ItemRepository) : ViewModel() 
         }
     }
 
-    fun newIntent(context: Context): Intent {
-        var newIntent = Intent(context, ItemDetailsActivity ::class.java)
-        return newIntent
+    suspend fun getItemDetails(index: String) = withContext(Dispatchers.IO){
+        repository.getItemByIndex(index).collect{
+            when (it) {
+                is Resource.Success -> {
+                    itemDetailed = it.data
+                }
+                is Resource.Error -> {}
+                is Resource.Loading -> {}
+            }
+        }
     }
 }

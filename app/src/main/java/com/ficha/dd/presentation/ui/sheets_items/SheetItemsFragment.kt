@@ -1,31 +1,34 @@
 package com.ficha.dd.presentation.ui.sheets_items
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ficha.dd.MainActivity
-import com.ficha.dd.databinding.FragmentCharacterItemBinding
-import com.ficha.dd.domain.model.CharacterSheet
+import com.ficha.dd.databinding.FragmentItemsListBinding
 import com.ficha.dd.domain.model.Item
 import com.ficha.dd.presentation.ui.item_details.ItemDetailsActivity
 import com.ficha.dd.presentation.viewModel.SheetItemsViewModel
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.coroutines.coroutineContext
 
 class SheetItemsFragment : Fragment() {
 
-    private var _binding: FragmentCharacterItemBinding? = null
+    private var _binding: FragmentItemsListBinding? = null
 
     private val binding get() = _binding!!
 
     private val viewModel: SheetItemsViewModel by viewModel()
 
-    private val adapter = SheetItemsAdapter(){
-        goToItemDetails(it)
+    private val adapter = SheetItemsAdapter{
+       lifecycleScope.launch {
+            goToItemDetails(it)
+        }
     }
 
     override fun onCreateView(
@@ -33,7 +36,7 @@ class SheetItemsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCharacterItemBinding.inflate(inflater, container, false)
+        _binding = FragmentItemsListBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         setupViews()
@@ -70,8 +73,10 @@ class SheetItemsFragment : Fragment() {
         }
     }
 
-    private fun goToItemDetails(item: Item) {
-        val intent = ItemDetailsActivity.newIntent(requireContext(), item)
+    private suspend fun goToItemDetails(item: Item) {
+            viewModel.getItemDetails(item.index)
+        val intent =
+            viewModel.itemDetailed?.let { ItemDetailsActivity.newIntent(requireContext(), it) }
         startActivity(intent)
     }
 }

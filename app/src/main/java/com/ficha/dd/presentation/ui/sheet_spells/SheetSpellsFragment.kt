@@ -6,27 +6,35 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ficha.dd.databinding.FragmentCharacterSpellBinding
+import com.ficha.dd.databinding.FragmentSpellsListBinding
+import com.ficha.dd.domain.model.Spell
+import com.ficha.dd.presentation.ui.item_details.SpellDetailsActivity
 import com.ficha.dd.presentation.viewModel.SheetSpellsViewModel
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SheetSpellsFragment : Fragment() {
 
-    private var _binding: FragmentCharacterSpellBinding? = null
+    private var _binding: FragmentSpellsListBinding? = null
 
     private val binding get() = _binding!!
 
-    private val characterSpellViewModel: SheetSpellsViewModel by viewModel()
+    private val viewModel: SheetSpellsViewModel by viewModel()
 
-    private val adapter = SheetSpellsAdapter()
+    private val adapter = SheetSpellsAdapter() {
+        lifecycleScope.launch {
+            goToSpellDetails(it)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCharacterSpellBinding.inflate(inflater, container, false)
+        _binding = FragmentSpellsListBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         setupViews()
@@ -57,8 +65,15 @@ class SheetSpellsFragment : Fragment() {
 
     }
     private fun setObservers() {
-        characterSpellViewModel.allSpells.observe(viewLifecycleOwner) {
+        viewModel.allSpells.observe(viewLifecycleOwner) {
             adapter.setSpells(it)
         }
+    }
+
+    private suspend fun goToSpellDetails(spell: Spell) {
+        viewModel.getSpellDetails(spell.index)
+        val intent =
+            viewModel.spellDetailed?.let { SpellDetailsActivity.newIntent(requireContext(), it) }
+        startActivity(intent)
     }
 }

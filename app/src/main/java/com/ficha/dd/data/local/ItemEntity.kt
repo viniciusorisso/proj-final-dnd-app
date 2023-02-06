@@ -10,5 +10,5 @@ data class ItemEntity (
     @field:Json(name="index")
     var itemIndex : String,
     var name : String,
-    var url : String
+    var url : String,
 )

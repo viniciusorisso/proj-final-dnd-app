@@ -1,5 +1,6 @@
 package com.ficha.dd.data.repository
 
+import com.ficha.dd.data.mapper.toItem
 import com.ficha.dd.data.mapper.toSpell
 import com.ficha.dd.data.mapper.toSpellEntity
 import com.ficha.dd.data.remote.DndApi
@@ -63,12 +64,24 @@ class SpellRepositoryImpl(
 
     override suspend fun getSpellByIndex(index: String): Flow<Resource<Spell>> =
         withContext(Dispatchers.IO) {
-            return@withContext flow {
+            return@withContext flow  {
                 // Emit 00:42:00
                 emit(Resource.Loading(true))
-                val spellsList = dao.getSpellByIndex(index)
+                val remoteSpell = try {
+                    val response = api.getSpellByIndex(index).toSpell()
+
+                    response
+                }catch (e: IOException) {
+                    e.printStackTrace()
+                    emit(Resource.Error("Não foi possível carregar a Magia"))
+                    null
+                }catch (e: HttpException) {
+                    e.printStackTrace()
+                    emit(Resource.Error("Não foi possível carregar a Magia"))
+                    null
+                }
                 emit(Resource.Success(
-                    data = spellsList.toSpell()
+                    data = remoteSpell
                 ))
             }
     }
