@@ -1,9 +1,7 @@
 package com.ficha.dd.presentation.viewModel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.ficha.dd.domain.model.Item
 import com.ficha.dd.domain.model.Spell
 import com.ficha.dd.domain.repository.SpellRepository
 import com.ficha.dd.util.Resource

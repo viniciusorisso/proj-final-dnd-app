@@ -1,6 +1,9 @@
 package com.ficha.dd.data.remote.dto
 
-import com.ficha.dd.data.remote.dto.spell_response.*
+import com.ficha.dd.data.remote.dto.spell_response.SpellClassesDto
+import com.ficha.dd.data.remote.dto.spell_response.SpellComponentsTypes
+import com.ficha.dd.data.remote.dto.spell_response.SpellSchoolDto
+import com.ficha.dd.data.remote.dto.spell_response.SpellSubClassesDto
 import com.squareup.moshi.Json
 
 data class SpellResponseDto (

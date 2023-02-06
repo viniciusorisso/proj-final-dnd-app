@@ -13,9 +13,9 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ItemDetailsActivity : AppCompatActivity(){
-    private lateinit var _binding: ItemDetailsBinding
+    private var _binding: ItemDetailsBinding? = null
 
-    private val binding get() = _binding
+    private val binding get() = _binding!!
 
     private val viewModel: ItemDetailsViewModel by viewModel()
 
@@ -41,6 +41,10 @@ class ItemDetailsActivity : AppCompatActivity(){
             binding.detailsItemCost.text = "Price: ${it?.itemCost?.quantity.toString()} ${it?.itemCost?.unit.toString()}"
             binding.detailsItemDescription.text = "${if (it?.desc?.isEmpty() == true) "" else "Description:"} ${it?.desc.toString().replace("[", "").replace("]", "")}"
         }
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     companion object {

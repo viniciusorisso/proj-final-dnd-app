@@ -1,6 +1,5 @@
 package com.ficha.dd.data.repository
 
-import com.ficha.dd.data.mapper.toItem
 import com.ficha.dd.data.mapper.toSpell
 import com.ficha.dd.data.mapper.toSpellEntity
 import com.ficha.dd.data.remote.DndApi
@@ -14,15 +13,12 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import okio.IOException
 import retrofit2.HttpException
-import javax.inject.Inject
-import javax.inject.Singleton
 
 class SpellRepositoryImpl(
     val api: DndApi,
     db: DndDatabase
 ): SpellRepository {
     private val dao = db.SpellDAO()
-
     override suspend fun getSpellsList(): Flow<Resource<List<Spell>>> =
         withContext(Dispatchers.IO) {
             return@withContext flow {

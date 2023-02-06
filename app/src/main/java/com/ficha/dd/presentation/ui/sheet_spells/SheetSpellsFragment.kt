@@ -6,14 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ficha.dd.databinding.FragmentSpellsListBinding
 import com.ficha.dd.domain.model.Spell
-import com.ficha.dd.presentation.ui.item_details.ItemDetailsActivity
 import com.ficha.dd.presentation.ui.item_details.SpellDetailsActivity
 import com.ficha.dd.presentation.viewModel.SheetSpellsViewModel
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SheetSpellsFragment : Fragment() {
@@ -61,7 +58,6 @@ class SheetSpellsFragment : Fragment() {
                 return false
             }
         })
-
     }
     private fun setObservers() {
         viewModel.allSpells.observe(viewLifecycleOwner) {

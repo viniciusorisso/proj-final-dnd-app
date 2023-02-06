@@ -16,10 +16,7 @@ class ItemDetailsViewModel(val repository: ItemRepository): ViewModel() {
             when (it) {
                 is Resource.Success -> {
                     if(it.data != null)
-//                        _itemDetails.postValue(it.data)
                         itemDetails.postValue(it.data)
-                    else
-                        itemDetails.postValue(Item("", "Jann", "", listOf(""), null))
                 }
                 is Resource.Error -> {}
                 is Resource.Loading -> {}

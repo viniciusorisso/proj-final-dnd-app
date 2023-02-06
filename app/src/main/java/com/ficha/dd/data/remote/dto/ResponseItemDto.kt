@@ -1,6 +1,5 @@
 package com.ficha.dd.data.remote.dto
 
-import com.ficha.dd.domain.model.ItemCost
 import com.squareup.moshi.Json
 
 @Json

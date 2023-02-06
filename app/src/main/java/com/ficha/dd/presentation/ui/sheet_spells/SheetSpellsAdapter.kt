@@ -54,7 +54,6 @@ class SheetSpellsAdapter(val onClick: (Spell) -> Unit) :
         fun bind (spell: Spell, onClick: (Spell) -> Unit) = with(itemBinding) {
             this.itemName.text = spell.name
 
-
             root.setOnClickListener{
                 onClick(spell)
             }

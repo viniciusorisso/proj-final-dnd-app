@@ -1,13 +1,12 @@
-package com.ficha.dd
+package com.ficha.dd.presentation.ui
 
-import android.os.Build
 import android.os.Bundle
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.ficha.dd.R
 import com.ficha.dd.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 

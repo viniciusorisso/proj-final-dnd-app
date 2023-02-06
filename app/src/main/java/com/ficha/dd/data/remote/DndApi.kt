@@ -1,9 +1,9 @@
 package com.ficha.dd.data.remote
 
-import com.ficha.dd.data.remote.dto.ItemsListResponseDto
-import com.ficha.dd.data.remote.dto.SpellsListResponseDto
 import com.ficha.dd.data.remote.dto.ItemResponseDto
+import com.ficha.dd.data.remote.dto.ItemsListResponseDto
 import com.ficha.dd.data.remote.dto.SpellResponseDto
+import com.ficha.dd.data.remote.dto.SpellsListResponseDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 

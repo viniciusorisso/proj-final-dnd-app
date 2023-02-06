@@ -14,9 +14,9 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SpellDetailsActivity : AppCompatActivity(){
-    private lateinit var _binding: SpellDetailsBinding
+    private var _binding: SpellDetailsBinding? = null
 
-    private val binding get() = _binding
+    private val binding get() = _binding!!
 
     private val viewModel: SpellDetailsViewModel by viewModel()
 
@@ -24,7 +24,6 @@ class SpellDetailsActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = SpellDetailsBinding.inflate(layoutInflater)
-
 
         val spell = intent.getStringExtra("spell")
         lifecycleScope.launch {

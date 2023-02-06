@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ficha.dd.domain.model.Item
 import com.ficha.dd.domain.model.Spell
 import com.ficha.dd.domain.repository.SpellRepository
 import com.ficha.dd.util.Resource
@@ -16,28 +15,16 @@ class SheetSpellsViewModel(private val repository: SpellRepository) : ViewModel(
     private val _allSpells = MutableLiveData<List<Spell>?>()
     val allSpells: LiveData<List<Spell>?> = _allSpells
 
-    var spellDetailed: Spell? = null
     init {
         viewModelScope.launch {
             loadInfo()
         }
     }
-    suspend fun loadInfo() = withContext(Dispatchers.IO) {
+    private suspend fun loadInfo() = withContext(Dispatchers.IO) {
         repository.getSpellsList().collect {
             when (it) {
                 is Resource.Success -> {
                     _allSpells.postValue(it.data)
-                }
-                is Resource.Error -> {}
-                is Resource.Loading -> {}
-            }
-        }
-    }
-    suspend fun getSpellDetails(index: String) = withContext(Dispatchers.IO){
-        repository.getSpellByIndex(index).collect{
-            when (it) {
-                is Resource.Success -> {
-                    spellDetailed = it.data
                 }
                 is Resource.Error -> {}
                 is Resource.Loading -> {}

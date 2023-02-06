@@ -1,7 +1,5 @@
 package com.ficha.dd.presentation.viewModel
 
-import android.content.Context
-import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,7 +20,7 @@ class SheetItemsViewModel(private val repository: ItemRepository) : ViewModel() 
             loadInfo()
         }
     }
-    suspend fun loadInfo() = withContext(Dispatchers.IO){
+    private suspend fun loadInfo() = withContext(Dispatchers.IO){
         repository.getItemsList().collect{
             when (it) {
                 is Resource.Success -> {
