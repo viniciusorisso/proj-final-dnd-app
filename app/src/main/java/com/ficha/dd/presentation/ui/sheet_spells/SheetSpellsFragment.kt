@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ficha.dd.databinding.FragmentSpellsListBinding
 import com.ficha.dd.domain.model.Spell
+import com.ficha.dd.presentation.ui.item_details.ItemDetailsActivity
 import com.ficha.dd.presentation.ui.item_details.SpellDetailsActivity
 import com.ficha.dd.presentation.viewModel.SheetSpellsViewModel
 import kotlinx.coroutines.launch
@@ -24,9 +25,7 @@ class SheetSpellsFragment : Fragment() {
     private val viewModel: SheetSpellsViewModel by viewModel()
 
     private val adapter = SheetSpellsAdapter() {
-        lifecycleScope.launch {
-            goToSpellDetails(it)
-        }
+        goToSpellDetails(it)
     }
 
     override fun onCreateView(
@@ -70,10 +69,8 @@ class SheetSpellsFragment : Fragment() {
         }
     }
 
-    private suspend fun goToSpellDetails(spell: Spell) {
-        viewModel.getSpellDetails(spell.index)
-        val intent =
-            viewModel.spellDetailed?.let { SpellDetailsActivity.newIntent(requireContext(), it) }
+    private fun goToSpellDetails(spell: Spell) {
+        val intent = SpellDetailsActivity.newIntent(requireContext(), spell)
         startActivity(intent)
     }
 }

@@ -3,8 +3,7 @@ package com.ficha.dd.presentation.ui.sheet_spells
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.ficha.dd.databinding.SpellsListItemBinding
-import com.ficha.dd.domain.model.Item
+import com.ficha.dd.databinding.ListItemBinding
 import com.ficha.dd.domain.model.Spell
 
 class SheetSpellsAdapter(val onClick: (Spell) -> Unit) :
@@ -26,7 +25,7 @@ class SheetSpellsAdapter(val onClick: (Spell) -> Unit) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemBinding = SpellsListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemBinding = ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(itemBinding)
     }
 
@@ -51,9 +50,9 @@ class SheetSpellsAdapter(val onClick: (Spell) -> Unit) :
         notifyDataSetChanged()
     }
 
-    class ViewHolder (private val itemBinding: SpellsListItemBinding) : RecyclerView.ViewHolder(itemBinding.root){
+    class ViewHolder (private val itemBinding: ListItemBinding) : RecyclerView.ViewHolder(itemBinding.root){
         fun bind (spell: Spell, onClick: (Spell) -> Unit) = with(itemBinding) {
-            this.spellName.text = spell.name
+            this.itemName.text = spell.name
 
 
             root.setOnClickListener{

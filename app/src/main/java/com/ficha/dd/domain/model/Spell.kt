@@ -14,4 +14,4 @@ data class Spell(
     val duration: String?,
     val range: String?,
     val casting_time: String?
-): Parcelable
+) : Parcelable

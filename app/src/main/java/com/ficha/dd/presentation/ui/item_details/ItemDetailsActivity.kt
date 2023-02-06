@@ -6,9 +6,10 @@ import android.os.Build
 import android.os.Bundle
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.ficha.dd.databinding.ItemDetailsBinding
-import com.ficha.dd.domain.model.Item
 import com.ficha.dd.presentation.viewModel.ItemDetailsViewModel
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ItemDetailsActivity : AppCompatActivity(){
@@ -23,27 +24,29 @@ class ItemDetailsActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         _binding = ItemDetailsBinding.inflate(layoutInflater)
 
-        val item = savedInstanceState?.getParcelable("item", Item::class.java)
-        item?.let { viewModel.updateItem(it) }
+        val item = intent.getStringExtra("item")
+        lifecycleScope.launch {
+            item?.let { viewModel.updateItem(it) }
+        }
 
         val view = binding.root
 
-        setupViews()
+        setupObservers()
         setContentView(view)
     }
 
-    private fun setupViews() {
-
-        binding.detailsItemName.text = viewModel.itemDetails.value?.name
-        binding.detailsItemCost.text = viewModel.itemDetails.value?.url
-        binding.detailsItemDescription.text = viewModel.itemDetails.value?.index
+    fun setupObservers() {
+        viewModel.itemDetails.observe(this) {
+            binding.detailsItemName.text = it?.name
+            binding.detailsItemCost.text = "Price: ${it?.itemCost?.quantity.toString()} ${it?.itemCost?.unit.toString()}"
+            binding.detailsItemDescription.text = "${if (it?.desc?.isEmpty() == true) "" else "Description:"} ${it?.desc.toString().replace("[", "").replace("]", "")}"
+        }
     }
 
     companion object {
-        fun newIntent(context: Context, item: Item): Intent {
+        fun newIntent(context: Context, item: String): Intent {
             val intent: Intent = Intent(context, ItemDetailsActivity::class.java)
-            val bundle = intent.extras
-            bundle?.putParcelable("item", item)
+            intent.putExtra("item",  item)
             return intent
         }
     }

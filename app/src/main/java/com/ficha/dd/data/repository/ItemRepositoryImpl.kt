@@ -77,6 +77,7 @@ class ItemRepositoryImpl(
                     emit(Resource.Error("Não foi possível carregar o Item"))
                     null
                 }
+                emit(Resource.Loading(false))
                 emit(Resource.Success(
                     data = remoteItem
                 ))

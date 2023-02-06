@@ -6,10 +6,11 @@ import android.os.Build
 import android.os.Bundle
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.ficha.dd.databinding.SpellDetailsBinding
 import com.ficha.dd.domain.model.Spell
-import com.ficha.dd.presentation.viewModel.ItemDetailsViewModel
 import com.ficha.dd.presentation.viewModel.SpellDetailsViewModel
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SpellDetailsActivity : AppCompatActivity(){
@@ -24,30 +25,37 @@ class SpellDetailsActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         _binding = SpellDetailsBinding.inflate(layoutInflater)
 
-        val item = savedInstanceState?.getParcelable("spell", Spell::class.java)
-        item?.let { viewModel.updateItem(it) }
+
+        val spell = intent.getStringExtra("spell")
+        lifecycleScope.launch {
+            spell?.let { viewModel.updateSpell(it) }
+        }
 
         val view = binding.root
 
-        setupViews()
+        setupObservers()
         setContentView(view)
     }
 
-    private fun setupViews() {
+    private fun setupObservers() {
 
-        binding.detailsSpellName.text = viewModel.spellDetails.value?.name
-        binding.detailsSpellDescription.text = viewModel.spellDetails.value?.desc.toString()
-        binding.detailsSpellAttackType.text = viewModel.spellDetails.value?.attack_type
-        binding.detailsSpellLevel.text = viewModel.spellDetails.value?.level.toString()
-        binding.detailsSpellRange.text = viewModel.spellDetails.value?.range
-        binding.detailsSpellDuration.text = viewModel.spellDetails.value?.duration
+        viewModel.spellDetails.observe(this) {
+            binding.detailsSpellName.text = it?.name
+            binding.detailsSpellDescription.text = "${if (it?.desc?.isEmpty() == true) "" else "Description:"} ${it?.desc.toString().replace("[", "").replace("]", "")}"
+            binding.detailsSpellAttackType.text = it?.attack_type
+            binding.detailsSpellLevel.text =
+                "${if (it?.level.toString()?.isEmpty() == true) "" else "Range:"} ${it?.level.toString()}"
+            binding.detailsSpellRange.text =
+                "${if (it?.range?.isEmpty() == true) "" else "Range:"} ${it?.range}"
+            binding.detailsSpellDuration.text =
+                "${if (it?.duration?.isEmpty() == true) "" else "Duration:"} ${it?.duration}"
+        }
     }
 
     companion object {
         fun newIntent(context: Context, spell: Spell): Intent {
             val intent: Intent = Intent(context, SpellDetailsActivity::class.java)
-            val bundle = intent.extras
-            bundle?.putParcelable("spell", spell)
+            intent.putExtra("spell",  spell.index)
             return intent
         }
     }

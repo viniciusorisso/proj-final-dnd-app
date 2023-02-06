@@ -1,4 +1,4 @@
-package com.ficha.dd.presentation.ui.character_details
+package com.ficha.dd.presentation.ui.sheet_roll_dice
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -36,7 +36,7 @@ class RollDiceFragment : Fragment() {
 
 
     private fun setupViews() {
-        binding.rollDiceTitle.text = "Dados"
+        binding.rollDiceTitle.text = "Dices"
         binding.rollDiceValue.text = rollDiceViewModel.diceValue.value.toString()
     }
 

@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/navigation_roll_dice"
-        android:name="com.ficha.dd.presentation.ui.character_details.RollDiceFragment"
+        android:name="com.ficha.dd.presentation.ui.sheet_roll_dice.RollDiceFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_roll_dice" />
 

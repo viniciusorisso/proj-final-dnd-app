@@ -26,9 +26,7 @@ class SheetItemsFragment : Fragment() {
     private val viewModel: SheetItemsViewModel by viewModel()
 
     private val adapter = SheetItemsAdapter{
-       lifecycleScope.launch {
-            goToItemDetails(it)
-        }
+        goToItemDetails(it)
     }
 
     override fun onCreateView(
@@ -73,10 +71,8 @@ class SheetItemsFragment : Fragment() {
         }
     }
 
-    private suspend fun goToItemDetails(item: Item) {
-            viewModel.getItemDetails(item.index)
-        val intent =
-            viewModel.itemDetailed?.let { ItemDetailsActivity.newIntent(requireContext(), it) }
+    private fun goToItemDetails(item: Item) {
+        val intent = ItemDetailsActivity.newIntent(requireContext(), item.index)
         startActivity(intent)
     }
 }

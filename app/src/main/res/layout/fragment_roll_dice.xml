@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="20dp"
-    tools:context=".presentation.ui.character_details.RollDiceFragment">
+    tools:context=".presentation.ui.sheet_roll_dice.RollDiceFragment"
+    android:background="@color/primaryVariant"
+    >
 
     <TextView
         android:layout_width="match_parent"
@@ -13,7 +15,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:id="@+id/roll_dice_title"
-        android:textSize="20sp"
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/colorOnPrimary"
+        android:textSize="22sp"
         >
     </TextView>
 
@@ -25,7 +29,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:id="@+id/roll_dice_value"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textColor="@color/colorOnPrimary"
+        android:textSize="28sp"
         >
     </TextView>
 
@@ -42,6 +47,8 @@
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
             android:id="@+id/roll_dice_d4"
+            android:backgroundTint="@color/primary"
+            android:textColor="@color/colorOnPrimary"
             android:text="d4"
             />
         <Button
@@ -50,12 +57,16 @@
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
             android:id="@+id/roll_dice_d6"
+            android:backgroundTint="@color/primary"
+            android:textColor="@color/colorOnPrimary"
             android:text="d6" />
         <Button
             android:layout_width="80dp"
             android:layout_height="60dp"
             android:layout_weight="1"
             android:id="@+id/roll_dice_d8"
+            android:backgroundTint="@color/primary"
+            android:textColor="@color/colorOnPrimary"
             android:text="d8" />
     </LinearLayout>
 
@@ -70,6 +81,8 @@
             android:layout_height="60dp"
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/primary"
+            android:textColor="@color/colorOnPrimary"
             android:id="@+id/roll_dice_d10"
             android:text="d10" />
         <Button
@@ -77,12 +90,16 @@
             android:layout_height="60dp"
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/primary"
+            android:textColor="@color/colorOnPrimary"
             android:id="@+id/roll_dice_d12"
             android:text="d12" />
         <Button
             android:layout_width="80dp"
             android:layout_height="60dp"
             android:layout_weight="1"
+            android:backgroundTint="@color/primary"
+            android:textColor="@color/colorOnPrimary"
             android:id="@+id/roll_dice_d20"
             android:text="d20" />
     </LinearLayout>

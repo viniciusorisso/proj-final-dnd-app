@@ -24,10 +24,10 @@ import java.util.concurrent.TimeUnit
 
 val dndAppModule = module{
     viewModel {
-        ItemDetailsViewModel()
+        ItemDetailsViewModel(repository = get())
     }
     viewModel {
-        SpellDetailsViewModel()
+        SpellDetailsViewModel(repository = get())
     }
     viewModel{
         RollDiceViewModel()
