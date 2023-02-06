@@ -25,16 +25,16 @@ class ItemRepositoryImpl(
             return@withContext flow {
                 // Emit 00:42:00
                 emit(Resource.Loading(true))
-                val spellsList = dao.getAllItems()
+                val itemsList = dao.getAllItems()
                 emit(Resource.Success(
-                    data = spellsList.map { it.toItem() }
+                    data = itemsList.map { it.toItem() }
                 ))
-                val isDbEmpty = spellsList.isEmpty()
+                val isDbEmpty = itemsList.isEmpty()
                 if(!isDbEmpty){
                     emit(Resource.Loading(false))
                     return@flow
                 }
-                val remoteSpellsList = try {
+                val remoteItemsList = try {
                     val response = api.getAllItems().itemsList.map { itemDto -> itemDto.toItem()
                     }
                     response
@@ -48,14 +48,14 @@ class ItemRepositoryImpl(
                     null
                 }
 
-                remoteSpellsList?.let { spell ->
+                remoteItemsList?.let { item ->
                     emit(Resource.Loading(false))
                     dao.clearItemsList()
                     dao.insertItem(
-                        spell.map { it.toItemEntity() }
+                        item.map { it.toItemEntity() }
                     )
                 }
-                emit(Resource.Success(remoteSpellsList))
+                emit(Resource.Success(remoteItemsList))
             }
     }
 
@@ -64,10 +64,24 @@ class ItemRepositoryImpl(
             return@withContext flow {
                 // Emit 00:42:00
                 emit(Resource.Loading(true))
-                val spellsList = dao.getItemByIndex(index)
+                val remoteItem = try {
+                    val response = api.getItemByIndex(index).toItem()
+
+                    response
+                }catch (e: IOException) {
+                    e.printStackTrace()
+                    emit(Resource.Error("Não foi possível carregar o Item"))
+                    null
+                }catch (e: HttpException) {
+                    e.printStackTrace()
+                    emit(Resource.Error("Não foi possível carregar o Item"))
+                    null
+                }
+                emit(Resource.Loading(false))
                 emit(Resource.Success(
-                    data = spellsList.toItem()
+                    data = remoteItem
                 ))
             }
     }
+
 }

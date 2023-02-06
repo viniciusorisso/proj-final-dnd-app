@@ -13,15 +13,12 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import okio.IOException
 import retrofit2.HttpException
-import javax.inject.Inject
-import javax.inject.Singleton
 
 class SpellRepositoryImpl(
     val api: DndApi,
     db: DndDatabase
 ): SpellRepository {
     private val dao = db.SpellDAO()
-
     override suspend fun getSpellsList(): Flow<Resource<List<Spell>>> =
         withContext(Dispatchers.IO) {
             return@withContext flow {
@@ -63,12 +60,24 @@ class SpellRepositoryImpl(
 
     override suspend fun getSpellByIndex(index: String): Flow<Resource<Spell>> =
         withContext(Dispatchers.IO) {
-            return@withContext flow {
+            return@withContext flow  {
                 // Emit 00:42:00
                 emit(Resource.Loading(true))
-                val spellsList = dao.getSpellByIndex(index)
+                val remoteSpell = try {
+                    val response = api.getSpellByIndex(index).toSpell()
+
+                    response
+                }catch (e: IOException) {
+                    e.printStackTrace()
+                    emit(Resource.Error("Não foi possível carregar a Magia"))
+                    null
+                }catch (e: HttpException) {
+                    e.printStackTrace()
+                    emit(Resource.Error("Não foi possível carregar a Magia"))
+                    null
+                }
                 emit(Resource.Success(
-                    data = spellsList.toSpell()
+                    data = remoteSpell
                 ))
             }
     }
