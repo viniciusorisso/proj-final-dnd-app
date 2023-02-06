@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/primaryVariant"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:layout_marginBottom="40dp"
+        android:fillViewport="true"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:id="@+id/details_spell_name"
+            tools:text="Name"
+            android:textColor="@color/colorOnPrimary"
+            android:textSize="24sp"
+            android:fontFamily="sans-serif-black"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:justificationMode="inter_word"
+            app:layout_constraintTop_toBottomOf="@+id/details_spell_name"
+            android:id="@+id/details_spell_description"
+            tools:text="Description"
+            android:textColor="@color/colorOnPrimary"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginTop="30dp"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/details_spell_description"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:id="@+id/details_l1"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:text="duration"
+                android:textColor="@color/colorOnPrimary"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-medium"
+                android:id="@+id/details_spell_duration"
+                >
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:text="attack type"
+                android:textColor="@color/colorOnPrimary"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-medium"
+                android:id="@+id/details_spell_attack_type"
+                >
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/details_l1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:text="level"
+                android:textColor="@color/colorOnPrimary"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-medium"
+                android:id="@+id/details_spell_level"
+                >
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:text="range"
+                android:textColor="@color/colorOnPrimary"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-medium"
+                android:id="@+id/details_spell_range"
+                >
+            </TextView>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
+
+    
